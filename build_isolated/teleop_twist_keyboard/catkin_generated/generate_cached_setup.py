@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+
+import os
+import stat
+import sys
+
+# find the import for catkin's python package - either from source space or from an installed underlay
+if os.path.exists(os.path.join('/opt/ros/melodic/share/catkin/cmake', 'catkinConfig.cmake.in')):
+    sys.path.insert(0, os.path.join('/opt/ros/melodic/share/catkin/cmake', '..', 'python'))
+try:
+    from catkin.environment_cache import generate_environment_script
+except ImportError:
+    # search for catkin package in all workspaces and prepend to path
+    for workspace in '/home/yws/UMV_Project/rotor/devel_isolated/rqt_rotors;/home/yws/UMV_Project/rotor/devel_isolated/rotors_simulator;/home/yws/UMV_Project/rotor/devel_isolated/rotors_joy_interface;/home/yws/UMV_Project/rotor/devel_isolated/rotors_hil_interface;/home/yws/UMV_Project/rotor/devel_isolated/rotors_gazebo;/home/yws/UMV_Project/rotor/devel_isolated/rotors_gazebo_plugins;/home/yws/UMV_Project/rotor/devel_isolated/rotors_evaluation;/home/yws/UMV_Project/rotor/devel_isolated/rotors_description;/home/yws/UMV_Project/rotor/devel_isolated/rotors_control;/home/yws/UMV_Project/rotor/devel_isolated/rotors_comm;/home/yws/UMV_Project/rotor/devel_isolated/realsense_ros_gazebo;/home/yws/UMV_Project/rotor/devel_isolated/mav_system_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_state_machine_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_planning_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_comm;/home/yws/UMV_Project/rotor/devel_isolated/glog_catkin;/home/yws/UMV_Project/rotor/devel_isolated/catkin_simple;/home/yws/UMV_Project/rotor/devel_isolated/apriltag_ros;/home/yws/Project/dji-sim/devel;/home/yws/Project/rotors_gazebo/catkin_ws/devel;/home/yws/ros/autolabor_ws/devel;/home/yws/ros/catkin_ws/devel;/opt/ros/melodic'.split(';'):
+        python_path = os.path.join(workspace, 'lib/python2.7/dist-packages')
+        if os.path.isdir(os.path.join(python_path, 'catkin')):
+            sys.path.insert(0, python_path)
+            break
+    from catkin.environment_cache import generate_environment_script
+
+code = generate_environment_script('/home/yws/UMV_Project/rotor/devel_isolated/teleop_twist_keyboard/env.sh')
+
+output_filename = '/home/yws/UMV_Project/rotor/build_isolated/teleop_twist_keyboard/catkin_generated/setup_cached.sh'
+with open(output_filename, 'w') as f:
+    # print('Generate script for cached setup "%s"' % output_filename)
+    f.write('\n'.join(code))
+
+mode = os.stat(output_filename).st_mode
+os.chmod(output_filename, mode | stat.S_IXUSR)

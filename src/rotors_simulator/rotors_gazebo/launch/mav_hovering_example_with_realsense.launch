@@ -1,0 +1,80 @@
+<launch>
+  <arg name="mav_name" default="firefly"/>
+  <arg name="world_name" default="basic"/>
+  <arg name="enable_logging" default="false" />
+  <arg name="enable_ground_truth" default="true" />
+  <arg name="log_file" default="$(arg mav_name)" />
+  <arg name="tag_robot_name" default="tag"/>
+  <!-- apriltag arg -->
+  <arg name="node_namespace" default="apriltag_ros_continuous_node" />
+  <arg name="camera_name" default="/d435" />
+  <arg name="image_topic" default="color/image_raw" />
+  <arg name="camera_info" default="color/camera_info" />
+  <arg name="launch_prefix" default="" />
+
+  <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find rotors_gazebo)/models"/>
+  <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find rotors_gazebo)/models"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find rotors_gazebo)/worlds/$(arg world_name).world" />
+    <!-- <arg name="debug" value="true"/> -->
+    <arg name="paused" value="true"/>
+    <!-- <arg name="gui" value="false"/> -->
+    <!-- <arg name="verbose" value="true"/> -->
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rotors_description)/rviz/defaut.rviz" required="true" />
+
+  <group ns="$(arg mav_name)">
+    <include file="$(find rotors_gazebo)/launch/spawn_mav.launch">
+      <arg name="mav_name" value="$(arg mav_name)" />
+      <arg name="model" value="$(find rotors_description)/urdf/mav_with_realsense.gazebo" />
+      <arg name="enable_logging" value="$(arg enable_logging)" />
+      <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
+      <arg name="log_file" value="$(arg log_file)"/>
+    </include>
+    <node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen">
+      <rosparam command="load" file="$(find rotors_gazebo)/resource/lee_controller_$(arg mav_name).yaml" />
+      <rosparam command="load" file="$(find rotors_gazebo)/resource/$(arg mav_name).yaml" />
+      <remap from="odometry" to="odometry_sensor1/odometry" />
+    </node>
+    <node name="hovering_example" pkg="rotors_gazebo" type="hovering_example" output="screen"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  </group>
+  <group ns="$(arg tag_robot_name)">
+    <include file="$(find rotors_gazebo)/launch/spawn_mav.launch">
+      <arg name="mav_name" value="april_tag_car" />
+      <arg name="model" value="$(find rotors_description)/urdf/my_tag_car.urdf" />
+      <arg name="enable_logging" value="$(arg enable_logging)" />
+      <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
+      <arg name="log_file" value="$(arg log_file)"/>
+      <arg name="x" value="5.0"/>
+    </include>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node pkg="teleop_twist_keyboard" name="keyboard" type="teleop_twist_keyboard.py" />
+  </group>
+  <node pkg="tf" type="static_transform_publisher" name="tag2world" args="0 0 0 0 0 0 1 world $(arg tag_robot_name)/odom 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="tag2tag" args="0 0 0 0 0 0 1 $(arg tag_robot_name)/base_footprint base_footprint 100" />
+
+
+  <!-- Set parameters -->
+  <rosparam command="load" file="$(find apriltag_ros)/config/settings.yaml" ns="$(arg node_namespace)" />
+  <rosparam command="load" file="$(find apriltag_ros)/config/tags.yaml" ns="$(arg node_namespace)" />
+  
+  <node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="$(arg node_namespace)" clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)" >
+    <!-- Remap topics from those used in code to those on the ROS network -->
+    <remap from="image_rect" to="$(arg camera_name)/$(arg image_topic)" />
+    <remap from="camera_info" to="$(arg camera_name)/$(arg camera_info)" />
+
+    <param name="publish_tag_detections_image" type="bool" value="true" />      <!-- default: false -->
+  </node>
+
+  <node pkg="realsense_ros_gazebo" name="image2point" type="image2point" output="screen">
+    <param name="imageTopic" type="string" value="$(arg camera_name)/depth/image_raw"/>
+    <param name="camInfo" type="string" value="$(arg camera_name)/depth/camera_info" />
+    <param name="frameTopic" type="string" value="/d435_depth_frame" />
+  </node>
+
+</launch>
