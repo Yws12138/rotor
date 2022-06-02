@@ -1,0 +1,58 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/home/yws/UMV_Project/rotor/devel_isolated/rotors_comm/include/**",
+                "/home/yws/UMV_Project/rotor/devel_isolated/mav_system_msgs/include/**",
+                "/home/yws/UMV_Project/rotor/devel_isolated/mav_state_machine_msgs/include/**",
+                "/home/yws/UMV_Project/rotor/devel_isolated/mav_planning_msgs/include/**",
+                "/home/yws/UMV_Project/rotor/devel_isolated/mav_msgs/include/**",
+                "/home/yws/Project/dji-sim/devel/include/**",
+                "/home/yws/Project/rotors_gazebo/catkin_ws/devel/include/**",
+                "/home/yws/ros/catkin_ws/devel/include/**",
+                "/opt/ros/melodic/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/controller/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/corridor_generation/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/mav_package/DecompROS/decomp_ros_utils/include/**",
+                "/home/yws/Project/dji-sim/src/DecompUtil/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/global_planner/include/**",
+                "/home/yws/ros/autolabor_ws/src/helloworld/include/**",
+                "/home/yws/ros/catkin_ws/src/learning_parameter/include/**",
+                "/home/yws/ros/catkin_ws/src/learning_service/include/**",
+                "/home/yws/ros/catkin_ws/src/learning_tf/include/**",
+                "/home/yws/ros/catkin_ws/src/learning_topic/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/sim_package/lidar_simulator/lidar_gazebo_plugins/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/local_planner/include/**",
+                "/home/yws/UMV_Project/rotor/src/mav_comm/mav_msgs/include/**",
+                "/home/yws/UMV_Project/rotor/src/mav_comm/mav_planning_msgs/include/**",
+                "/home/yws/Project/dji-sim/src/octomap_rviz_plugins/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/quad_msgs/include/**",
+                "/home/yws/UMV_Project/rotor/src/rotors_simulator/rotors_control/include/**",
+                "/home/yws/UMV_Project/rotor/src/rotors_simulator/rotors_gazebo_plugins/include/**",
+                "/home/yws/UMV_Project/rotor/src/rotors_simulator/rotors_hil_interface/include/**",
+                "/home/yws/UMV_Project/rotor/src/rotors_simulator/rotors_joy_interface/include/**",
+                "/home/yws/Project/rotors_gazebo/catkin_ws/src/rqt/rqt_gui_cpp/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/traj_server/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/trajectory_optimization/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/navigation/transform_utils/include/**",
+                "/home/yws/Project/dji-sim/src/UAVNavigation-master/sim_package/velodyne_simulator/velodyne_gazebo_plugins/include/**",
+                "/usr/include/**",
+                "${workspaceFolder}/src/realsense_ros_gazebo/include",
+                "/opt/ros/melodic/include",
+                "/usr/include/pcl-1.8",
+                "${workspaceFolder}/src/apriltag_ros/apriltag_ros/include",
+                "/opt/ros/melodic/include/xmlrpcpp"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14"
+        }
+    ],
+    "version": 4
+}
