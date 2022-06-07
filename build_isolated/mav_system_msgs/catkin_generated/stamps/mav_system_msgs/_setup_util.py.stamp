@@ -268,7 +268,7 @@ if __name__ == '__main__':
 
         if not args.local:
             # environment at generation time
-            CMAKE_PREFIX_PATH = r'/home/yws/UMV_Project/rotor/devel_isolated/mav_state_machine_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_planning_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_comm;/home/yws/UMV_Project/rotor/devel_isolated/glog_catkin;/home/yws/UMV_Project/rotor/devel_isolated/catkin_simple;/home/yws/UMV_Project/rotor/devel_isolated/apriltag_ros;/home/yws/Project/dji-sim/devel;/home/yws/Project/rotors_gazebo/catkin_ws/devel;/home/yws/ros/autolabor_ws/devel;/home/yws/ros/catkin_ws/devel;/opt/ros/melodic'.split(';')
+            CMAKE_PREFIX_PATH = r'/home/yws/UMV_Project/rotor/devel_isolated/mav_state_machine_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_planning_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_msgs;/home/yws/UMV_Project/rotor/devel_isolated/mav_comm;/home/yws/UMV_Project/rotor/devel_isolated/map_generator;/home/yws/UMV_Project/rotor/devel_isolated/glog_catkin;/home/yws/UMV_Project/rotor/devel_isolated/cmake_utils;/home/yws/UMV_Project/rotor/devel_isolated/catkin_simple;/home/yws/UMV_Project/rotor/devel_isolated/apriltag_ros;/home/yws/Project/dji-sim/devel;/home/yws/Project/rotors_gazebo/catkin_ws/devel;/home/yws/ros/autolabor_ws/devel;/home/yws/ros/catkin_ws/devel;/opt/ros/melodic'.split(';')
         else:
             # don't consider any other prefix path than this one
             CMAKE_PREFIX_PATH = []

@@ -1,0 +1,8 @@
+prefix=/home/yws/UMV_Project/rotor/install
+
+Name: traj_server
+Description: Description of traj_server
+Version: 0.0.1
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

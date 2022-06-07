@@ -1,0 +1,8 @@
+prefix=/home/yws/UMV_Project/rotor/install
+
+Name: plan_manage
+Description: Description of plan_manage
+Version: 0.0.1
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

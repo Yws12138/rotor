@@ -1,5 +1,5 @@
 <launch>
-  <arg name="mav_name" default="firefly"/>
+  <arg name="mav_name" default="iris"/>
   <arg name="world_name" default="basic"/>
   <arg name="enable_logging" default="false" />
   <arg name="enable_ground_truth" default="true" />
@@ -23,6 +23,8 @@
   </include>
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rotors_description)/rviz/defaut.rviz" required="true" />
+<!-- adding boardcaster of transform matrix of cam 2 world which is used to filiter the ground point  -->
+  <node name="camera2world" pkg="realsense_ros_gazebo" type="camera2world" output="screen" />
 
   <group ns="$(arg mav_name)">
     <include file="$(find rotors_gazebo)/launch/spawn_mav.launch">
@@ -76,5 +78,7 @@
     <param name="camInfo" type="string" value="$(arg camera_name)/depth/camera_info" />
     <param name="frameTopic" type="string" value="/d435_depth_frame" />
   </node>
+
+  
 
 </launch>

@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/yws/UMV_Project/rotor/install_isolated/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_state_machine_msgs/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_planning_msgs/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_msgs/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_comm/lib;/home/yws/UMV_Project/rotor/devel_isolated/glog_catkin/lib;/home/yws/UMV_Project/rotor/devel_isolated/catkin_simple/lib;/home/yws/UMV_Project/rotor/devel_isolated/apriltag_ros/lib;/home/yws/Project/dji-sim/devel/lib;/home/yws/Project/rotors_gazebo/catkin_ws/devel/lib;/home/yws/ros/autolabor_ws/devel/lib;/home/yws/ros/catkin_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/yws/UMV_Project/rotor/install_isolated/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_state_machine_msgs/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_planning_msgs/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_msgs/lib;/home/yws/UMV_Project/rotor/devel_isolated/mav_comm/lib;/home/yws/UMV_Project/rotor/devel_isolated/map_generator/lib;/home/yws/UMV_Project/rotor/devel_isolated/glog_catkin/lib;/home/yws/UMV_Project/rotor/devel_isolated/cmake_utils/lib;/home/yws/UMV_Project/rotor/devel_isolated/catkin_simple/lib;/home/yws/UMV_Project/rotor/devel_isolated/apriltag_ros/lib;/home/yws/Project/dji-sim/devel/lib;/home/yws/Project/rotors_gazebo/catkin_ws/devel/lib;/home/yws/ros/autolabor_ws/devel/lib;/home/yws/ros/catkin_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

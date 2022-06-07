@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/yws/UMV_Project/rotor/devel/lib/libplan_manage.a  CMakeFiles/plan_manage.dir/src/plan_manage.cpp.o
+/usr/bin/ranlib /home/yws/UMV_Project/rotor/devel/lib/libplan_manage.a

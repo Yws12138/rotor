@@ -1,0 +1,8 @@
+prefix=/home/yws/UMV_Project/rotor/devel
+
+Name: target_prediction
+Description: Description of target_prediction
+Version: 0.0.1
+Cflags: -I/home/yws/UMV_Project/rotor/src/tracking_utils/target_prediction/include
+Libs: -L${prefix}/lib 
+Requires: 

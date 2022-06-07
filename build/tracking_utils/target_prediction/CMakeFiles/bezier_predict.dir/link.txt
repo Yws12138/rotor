@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/yws/UMV_Project/rotor/devel/lib/libbezier_predict.a  CMakeFiles/bezier_predict.dir/src/bezier_predict.cpp.o
+/usr/bin/ranlib /home/yws/UMV_Project/rotor/devel/lib/libbezier_predict.a
